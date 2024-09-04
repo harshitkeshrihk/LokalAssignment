@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".Screens.JobDetailsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/hiring"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
+
+
+        <!-- Job Title Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:cardElevation="4dp"
+            app:contentPadding="5dp"
+            app:cardCornerRadius="@dimen/cardCornerRadius_8"
+            android:padding="16dp"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="1dp"
+            android:backgroundTint="@color/cardBackgroundColor">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/job_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/job_title" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Company Details Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:cardElevation="4dp"
+            app:contentPadding="5dp"
+            app:cardCornerRadius="@dimen/cardCornerRadius_8"
+            android:padding="16dp"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="1dp"
+            android:backgroundTint="@color/cardBackgroundColor">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/company_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    android:text="Company Name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/job_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:maxLines="2"
+                    android:textColor="@color/grey"
+                    android:text="Job Location" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/salary_range"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:maxLines="2"
+                    android:textColor="@color/grey"
+                    android:text="Salary Range" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/job_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:maxLines="2"
+                    android:textColor="@color/grey"
+                    android:text="Job Type" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/experience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:maxLines="2"
+                    android:textColor="@color/grey"
+                    android:text="Experience Required" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Job Tags Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="8dp"
+            app:contentPadding="5dp"
+            app:cardCornerRadius="@dimen/cardCornerRadius_8"
+            android:padding="16dp"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="1dp"
+            android:backgroundTint="@color/cardBackgroundColor">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/job_tags_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:text="Job Tags"
+                    android:paddingBottom="8dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/job_tags_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Job Description Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="8dp"
+            app:contentPadding="5dp"
+            app:cardCornerRadius="@dimen/cardCornerRadius_8"
+            android:padding="16dp"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="1dp"
+            android:backgroundTint="@color/cardBackgroundColor">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="Job Description" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Contact Preference Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="8dp"
+            app:contentPadding="5dp"
+            app:cardCornerRadius="@dimen/cardCornerRadius_8"
+            android:padding="16dp"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="1dp"
+            android:backgroundTint="@color/cardBackgroundColor">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/contact_preference"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="Contact Preference" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Apply Button -->
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/apply_button"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/teal_200"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal|bottom"
+            app:strokeColor="@color/teal_700"
+            app:strokeWidth="1dp"
+            app:cornerRadius="8dp"
+            android:text="Apply Now" />
+    </LinearLayout>
+
+</ScrollView>

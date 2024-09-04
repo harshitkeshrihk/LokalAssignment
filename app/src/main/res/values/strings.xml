@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">LokalAssignmentApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="JobFragment">jobFragment</string>
+    <string name="BookmarksFragment">bookmarkFragments</string>
+    <string name="location">location</string>
+    <string name="Title">Title</string>
+    <string name="salary">salary</string>
+    <string name="phoneno">PhoneNo</string>
+    <string name="job_title">Job Title</string>
+</resources>

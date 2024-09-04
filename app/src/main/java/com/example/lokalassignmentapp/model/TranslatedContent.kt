@@ -1,0 +1,3 @@
+package com.example.lokalassignmentapp.model
+
+class TranslatedContent

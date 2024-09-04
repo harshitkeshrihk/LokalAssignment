@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Job"
+        android:icon="@drawable/baseline_work_24"
+        android:title="Job" />
+
+    <item
+        android:id="@+id/bookmarks"
+        android:icon="@drawable/baseline_archive_24"
+        android:title="Bookmarks" />
+
+</menu>

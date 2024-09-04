@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/cardView"
+    android:layout_height="195dp"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="@dimen/cardCornerRadius_12"
+    android:layout_marginBottom="@dimen/margin_bottom_20"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
+            android:background="@color/cardBackgroundColor">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="@dimen/margin_left_10"
+                android:layout_marginTop="@dimen/margin_top_10"
+                android:src="@drawable/businessman"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="67dp"
+                android:maxLines="2"
+                android:text="@string/Title"
+                android:gravity="left"
+                android:textColor="@color/black"
+                android:textSize="@dimen/large_text_size"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+                app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location"
+                android:layout_marginLeft="67dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:maxLines="2"
+                android:textSize="@dimen/small_text_size_16"
+                app:layout_constraintTop_toBottomOf="@+id/titleTv"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView" />
+
+            <TextView
+                android:id="@+id/salary"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="@string/salary"
+                android:layout_marginLeft="@dimen/margin_left_10"
+                android:textColor="@color/grey"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/small_text_size_16"
+                app:layout_constraintTop_toBottomOf="@id/location"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/faqBackgroudColor">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/call"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/baseline_add_call_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/phoneNo"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_24"
+                android:maxLines="1"
+                android:text="@string/phoneno"
+                android:textColor="@color/app_theme"
+                android:textSize="@dimen/small_text_size_16"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/call"
+                app:layout_constraintTop_toTopOf="parent"
+                 />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/bookMarkCV"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:padding="10dp"
+                android:src="@drawable/baseline_archive_24"
+                android:layout_marginRight="@dimen/margin_right_10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>

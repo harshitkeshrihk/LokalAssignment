@@ -27,6 +27,7 @@ class MainViewModel @Inject constructor(
     private var _data = MutableLiveData<NetworkResult<MutableList<Result>>>()
     var mdata: LiveData<NetworkResult<MutableList<Result>>> = _data
 
+
     private val _bookMarkedData = MutableLiveData<List<Result>?>()
     val mbookMarkedData: LiveData<List<Result>?> = _bookMarkedData
 
@@ -39,6 +40,8 @@ class MainViewModel @Inject constructor(
     //pagination
     private var currentPage = 1
     var isLastPage = false
+
+    val TAG = "VIEWMODEL"
 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -58,10 +61,9 @@ class MainViewModel @Inject constructor(
             try {
                 _data.value = NetworkResult.Loading()
                 val result = withContext(Dispatchers.IO){
-                    viewModelScope.async {
                         repo.getJobs(page)
-                    }
-                }.await()
+
+                }
                 //pagination
                 when(result){
                     is NetworkResult.Success ->{
@@ -70,13 +72,10 @@ class MainViewModel @Inject constructor(
                             val firstPageResultJobs: MutableList<Result> = result.data?.results?.toMutableList() ?: mutableListOf()
                             _data.value = NetworkResult.Success(firstPageResultJobs)
                         }else{
-                            val currentList = _data.value?.data ?: mutableListOf()
                             val jobs = result.data?.results ?: mutableListOf()
-                            currentList.addAll(jobs)
-                            _data.value = NetworkResult.Success(currentList)
+                            _data.value = NetworkResult.Success(jobs.toMutableList())
                         }
                         isLastPage = result.data?.results?.isEmpty() ?: false
-                        Log.d("JOBFRAGMENTTEST3", isLastPage.toString())
                     }
                     is NetworkResult.Loading ->{
                         _data.value = NetworkResult.Loading()
@@ -93,14 +92,17 @@ class MainViewModel @Inject constructor(
         }
     }
 
+
+
+
     //pagination
     fun loadNextPage() {
-        if(!isLastPage && !_isLoading.value!!) {
-            Log.d("JOBFRAGMENTTEST3", currentPage.toString())
+        if(!isLastPage && isLoading.value == false) {
             currentPage++
             fetchJobDetails(currentPage)
         }
     }
+
 
     fun fetchBookMarkedJob(){
         viewModelScope.launch {
@@ -157,6 +159,7 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
 
     fun clickJob(job: Result){
         _clickedJob.postValue(job)

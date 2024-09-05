@@ -19,12 +19,15 @@ class JobAdapter() : RecyclerView.Adapter<JobAdapter.ViewHolder>() {
     var onItemClick: ((Result) -> Unit)? = null
 
     var onBookmarkClick: ((Result) -> Unit)? = null
+
     private var items: List<Result> = arrayListOf()
 
     fun setList(data: List<Result>){
         items=data
         notifyDataSetChanged()
     }
+
+
 
     // Define the ViewHolder that will hold each item
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

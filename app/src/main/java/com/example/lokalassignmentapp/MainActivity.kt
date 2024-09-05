@@ -17,37 +17,40 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
 
+    private val jobFragment = JobFragment()
+    private val bookmarksFragment = BookmarksFragment()
+    private val fragmentManager = supportFragmentManager
+    private var activeFragment: Fragment = jobFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNav.setOnNavigationItemSelectedListener(navListener)
+        supportFragmentManager.beginTransaction().apply {
+            add(R.id.rootLayout, jobFragment, getString(R.string.JobFragment))
+            add(R.id.rootLayout, bookmarksFragment, getString(R.string.BookmarksFragment)).hide(bookmarksFragment)
+        }.commit()
 
-        // as soon as the application opens the first fragment should
-        // be shown to the user in this case it is algorithm fragment
-        supportFragmentManager.beginTransaction().replace(R.id.rootLayout, JobFragment()).commit()
 
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(navListener)
 
     }
 
-    private val navListener = BottomNavigationView.OnNavigationItemSelectedListener {
-        // By using switch we can easily get the
-        // selected fragment by using there id
-        lateinit var selectedFragment: Fragment
-        when (it.itemId) {
-            R.id.Job -> {
-                selectedFragment = JobFragment()
+     private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
+        when (menuItem.itemId) {
+            R.id.Job-> {
+                fragmentManager.beginTransaction().hide(activeFragment).show(jobFragment).commit()
+                activeFragment = jobFragment
+                true
             }
-            R.id.bookmarks -> {
-                selectedFragment = BookmarksFragment()
+            R.id.bookmarks-> {
+                fragmentManager.beginTransaction().hide(activeFragment).show(bookmarksFragment).commit()
+                activeFragment = bookmarksFragment
+                true
             }
+            else -> false
         }
-        // It will help to replace the
-        // one fragment to other.
-        supportFragmentManager.beginTransaction().replace(R.id.rootLayout, selectedFragment).commit()
-        true
     }
 
 }

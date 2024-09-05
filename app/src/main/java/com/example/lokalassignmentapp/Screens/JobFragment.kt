@@ -33,6 +33,17 @@ class JobFragment : Fragment() {
 
     private var isLoading = false
 
+    private lateinit var lists : MutableList<Result>
+
+
+    val TAG = "JOBFRAGMENT"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lists = viewModel?.mdata?.value?.data ?: mutableListOf()
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +68,7 @@ class JobFragment : Fragment() {
         binding.recyclerView.setHasFixedSize(true)
         adapter = JobAdapter()
         binding.recyclerView.adapter = adapter
+        updateRecyclerView()
         adapter.onBookmarkClick = {
             viewModel.insertJob(it)
             Toast.makeText(requireContext(),"Bookmarked",Toast.LENGTH_SHORT).show()
@@ -78,15 +90,20 @@ class JobFragment : Fragment() {
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 val visibleItemCount = layoutManager.childCount
                 val totalItemCount = layoutManager.itemCount
+
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
-                if (!isLoading) {
+                if (!isLoading && !viewModel.isLastPage) {
                     if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0) {
                         viewModel.loadNextPage()
                     }
                 }
             }
         })
+    }
+
+    private fun updateRecyclerView() {
+        adapter.setList(lists)
     }
 
     private fun setUpObservers() {
@@ -96,11 +113,11 @@ class JobFragment : Fragment() {
                     binding.progressBar.visibility = View.VISIBLE
                 }
                 is NetworkResult.Success -> {
-                    binding.progressBar.visibility = View.GONE
-//                    it.data?.let { it1 -> it1.results?.let { it2 -> adapter.setList(it2) } }
-                    it.data?.let { it1 -> adapter.setList(it1.toList()) }
+                    it.data?.let { it1 -> lists.addAll(it1.toList()) }
+                    updateRecyclerView()
                 }
                 is NetworkResult.Error ->{
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(),"Error..",Toast.LENGTH_SHORT).show()
                 }
             }
@@ -118,6 +135,7 @@ class JobFragment : Fragment() {
             val bottomNavigationView = it.findViewById<View>(R.id.bottom_navigation)
             bottomNavigationView.visibility = View.VISIBLE
         }
+
     }
 
     private fun moveToDetailsFragment(fragment: JobDetailsFragment){

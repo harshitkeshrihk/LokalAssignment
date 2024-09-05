@@ -113,6 +113,7 @@ class JobFragment : Fragment() {
                     binding.progressBar.visibility = View.VISIBLE
                 }
                 is NetworkResult.Success -> {
+                    binding.progressBar.visibility = View.GONE
                     it.data?.let { it1 -> lists.addAll(it1.toList()) }
                     updateRecyclerView()
                 }
